@@ -1,0 +1,12 @@
+{
+  "name": "travling",
+  "version": "1.0.0",
+  "description": "這是一個介紹好玩的地點跟分享的網站",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
