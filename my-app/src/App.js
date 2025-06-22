@@ -1,169 +1,95 @@
 import React from 'react';
-const element = <h1>Hello, JSX!</h1>;
-const aaa = <h1>12345</h1>
+import './App.css';
+function Header() {
+  return (
+    <header style={{ 
+      backgroundColor: '#2c3e50', 
+      color: 'white', 
+      padding: '1rem', 
+      textAlign: 'center', 
+      textShadow: '4px 4px 8px rgba(214, 67, 67, 0.5)', 
+      display: 'flex', 
+      alignItems: 'center', 
+      justifyContent: 'flex-start', 
+      position: 'relative'
+    }}>
+      {/* Panda logo on the left */}
+      <span style={{ display: 'inline-flex', alignItems: 'center', marginRight: '1rem', zIndex: 1 }}>
+        <svg width="48" height="48" viewBox="0 0 48 48" style={{ borderRadius: '50%', background: '#fffbe7', boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}>
+          {/* Panda ears */}
+          <ellipse cx="14" cy="14" rx="6" ry="7" fill="#333" />
+          <ellipse cx="34" cy="14" rx="6" ry="7" fill="#333" />
+          {/* Panda face */}
+          <circle cx="24" cy="24" r="16" fill="#fff" stroke="#333" strokeWidth="2"/>
+          {/* Panda eye patches */}
+          <ellipse cx="17" cy="25" rx="4" ry="5" fill="#333"/>
+          <ellipse cx="31" cy="25" rx="4" ry="5" fill="#333"/>
+          {/* Panda eyes */}
+          <circle cx="17" cy="27" r="1.3" fill="#fff"/>
+          <circle cx="31" cy="27" r="1.3" fill="#fff"/>
+          <circle cx="17" cy="27" r="0.7" fill="#222"/>
+          <circle cx="31" cy="27" r="0.7" fill="#222"/>
+          {/* Panda nose */}
+          <ellipse cx="24" cy="32" rx="1.5" ry="1" fill="#333"/>
+          {/* Panda mouth */}
+          <path d="M23 34 Q24 35 25 34" stroke="#333" strokeWidth="1" fill="none"/>
+        </svg>
+      </span>
+      {/* Title centered absolutely */}
+      <h1 style={{ 
+        margin: 0, 
+        position: 'absolute', 
+        left: '50%', 
+        transform: 'translateX(-50%)', 
+        width: 'max-content'
+      }}>
+        旅遊資訊平台
+      </h1>
+    </header>
+  );
+}
 
-const string = <Welcome name="Chiu Yu" />;
+function Sidebar() {
+  return (
+    <aside style={{ width: '200px', backgroundColor: '#ecf0f1', padding: '1rem' }}>
+      <ul>
+        <li>首頁</li>
+        <li>熱門景點</li>
+        <li>行程推薦</li>
+        <li>關於我們</li>
+      </ul>
+    </aside>
+  );
+}
+
+function MainContent() {
+  return (
+    <main style={{ flex: 1, padding: '1rem', backgroundColor: '#fdfefe' }}>
+      <h2>歡迎來到旅遊資訊平台</h2>
+      <p>探索最熱門的景點與旅遊推薦！</p>
+    </main>
+  );
+}
+
+function Footer() {
+  return (
+    <footer style={{ backgroundColor: '#bdc3c7', padding: '1rem', textAlign: 'center' }}>
+      <p>© 2025 旅遊資訊平台. 保留所有權利.</p>
+    </footer>
+  );
+}
 
 function App() {
-
   return (
-    <div>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+      <Header />
+      <div style={{ display: 'flex', flex: 1 }}>
+        <Sidebar />
+        <MainContent />
+      </div>
+      <Footer />
     </div>
   );
 }
-
-// 類別組件
-class xxxx extends React.Component {
-  render() {
-    return <h1>yes this is render, {this.props.name}</h1>;
-  }
-}
-
-function Example() {
-  // useState Hook
-  const [count, setCount] = React.useState(0);
-
-  // useEffect Hook
-  React.useEffect(() => {
-    document.title = `You clicked ${count} times`;
-  }, [count]);
-
-  return (
-    <div>
-      <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)}>
-        Click me
-      </button>
-    </div>
-  );
-}
-
-function ToggleColorButton() {
-  const [isRed, setIsRed] = React.useState(true);
-  
-  const handleClick = () => setIsRed(prev => !prev);
-
-  return (
-    <button
-      onClick={handleClick}
-      style={{
-        backgroundColor: isRed ? 'red' : 'green',
-        color: 'white',
-        padding: '10px 20px',
-        border: 'none',
-        cursor: 'pointer'
-      }}
-    >
-      {isRed ? '紅色' : '綠色'}
-    </button>
-  );
-}
-
-function Counter() {
-  const [count, setCount] = React.useState(3);
-
-  return (
-    <div>
-      <h2 onClick={() => setCount(count - 1)} style={{cursor: 'pointer'}}>
-        {count}
-      </h2>
-      <p>點擊數字讓它加一！</p>
-    </div>
-  );
-}
-
-function MyButton() {
-  return (
-    <button onClick={() => alert('你點了按鈕！')}>
-      點我一下
-    </button>
-  );
-}
-
-function CountdownButton() {
-  const [count, setCount] = React.useState(null);
-  const [intervalId, setIntervalId] = React.useState(null);
-
-  const startCountdown = () => {
-    if (intervalId) return; // 防止重複啟動
-    setCount(10);
-    const id = setInterval(() => {
-      setCount(prev => {
-        if (prev === 1) {
-          clearInterval(id);
-          setIntervalId(null);
-          return null;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-    setIntervalId(id);
-  };
-
-  return (
-    <div>
-      <button onClick={startCountdown}> 點我開始倒數計時</button>
-      {count !== null && <h2>{count}</h2>}
-    </div>
-  );
-}
-
-function GoogleButton() {
-  return (
-    <button onClick={() => window.open('https://www.google.com', '_blank')}>
-      開啟 Google 首頁
-    </button>
-  );
-}
-
-function Welcome(props) {
-  return <h1>哈囉，{props.name}</h1>;
-}
-
-
-function HandleEvent() {
-  const handleClick = (e) => {
-    e.preventDefault();              
-    console.log('按鈕被點擊');
-    alert('你點擊了按鈕'); // 顯示一個彈跳視窗
-  }
-
-  return (
-    <div>
-      <h2>事件處理範例</h2>
-      <button onClick={handleClick}>
-        <Counter />
-      </button>
-    </div>
-  );
-}
-
-function Greeting(props) {
-  const isLoggedIn = props.isLoggedIn;
-  
-  return (
-    <div>
-      {isLoggedIn ? (
-        <h1>歡迎回來！</h1>
-      ) : (
-        <h1>請登入。</h1>
-      )}
-    </div>
-  );
-}
-
-function NumberList(props) {
-  const numbers = props.numbers;
-  const listItems = numbers.map((number) =>
-    <li key={number.toString()}>
-      {number}
-    </li>
-  );
-  
-  return (
-    <ul>{listItems}</ul>
-  );
-}
-
 
 export default App;
