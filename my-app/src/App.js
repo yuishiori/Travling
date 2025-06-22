@@ -53,7 +53,16 @@ function Sidebar() {
   return (
     <aside style={{ width: '200px', backgroundColor: '#ecf0f1', padding: '1rem' }}>
       <ul>
-        <li>首頁</li>
+        <li>
+          <a 
+            href="https://www.google.com/maps" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            style={{ color: '#2980b9', textDecoration: 'none' }}
+          >
+            Google 地圖
+          </a>
+        </li>
         <li>熱門景點</li>
         <li>行程推薦</li>
         <li>關於我們</li>
